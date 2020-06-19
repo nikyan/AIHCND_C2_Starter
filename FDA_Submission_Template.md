@@ -44,48 +44,41 @@ Pneumonia Screener uses VGG16 Convolutional Neuro Net as base model with additio
 ### 3. Algorithm Training
 
 **Parameters:**
+
 * Types of augmentation used during training:
- 1. horizontal_flip = True
- 2. height_shift_range = 0.05
- 3. width_shift_range=0.1
- 4. rotation_range=5
- 5. shear_range = 0.1
- 6. fill_mode = 'reflect'
- 7. zoom_range=0.15
+
+   1. horizontal_flip = True
+   2. height_shift_range = 0.05
+   3. width_shift_range=0.1
+   4. rotation_range=5
+   5. shear_range = 0.1
+   6. fill_mode = 'reflect'
+   7. zoom_range=0.15
  
 * Batch size
- 1. Train: 32
- 2. Test: 1024
+   1. Train: 32
+   2. Test: 1024
  
-* Optimizer learning rate
-  Adam(lr=1e-4)
+* Optimizer learning rate: Adam(lr=1e-4)
 
-* Layers of pre-existing architecture that were frozen
-  17 layers
+* Layers of pre-existing architecture that were frozen: 17 layers
   
 * Layers of pre-existing architecture that were fine-tuned
-  block5_conv3
-  block5_pool
+    1. block5_conv3
+    2. block5_pool
 
 * Layers added to pre-existing architecture
-  flatten_3 (Flatten)          (None, 25088)             0         
- _________________________________________________________________
- dropout_7 (Dropout)          (None, 25088)             0         
- _________________________________________________________________
- dense_9 (Dense)              (None, 1024)              25691136  
- _________________________________________________________________
- dropout_8 (Dropout)          (None, 1024)              0         
- _________________________________________________________________
- dense_10 (Dense)             (None, 512)               524800    
- _________________________________________________________________
- dropout_9 (Dropout)          (None, 512)               0         
- _________________________________________________________________
- dense_11 (Dense)             (None, 256)               131328    
- _________________________________________________________________
- dense_12 (Dense)             (None, 1)                 257       
- 
+    1. flatten_3 (Flatten)    
+    2. dropout_7 (Dropout)         
+    3. dense_9 (Dense)            
+    4. dropout_8 (Dropout)         
+    5. dense_10 (Dense)            
+    6. dropout_9 (Dropout)          
+    7. dense_11 (Dense)            
+    8. dense_12 (Dense)
  
 * Training Loss and Accuracy on Dataset
+
 ![GitHub Logo](/images/history.png)
 
 
@@ -93,9 +86,11 @@ Pneumonia Screener uses VGG16 Convolutional Neuro Net as base model with additio
 * RoC Curve
 
 AUC Score: 0.6916173570019724
+
 ![GitHub Logo](/images/Roc_Curve.png)
 
 **Final Threshold and Explanation:**
+
 ![GitHub Logo](/images/Threshold.png)
 
 F1 score increases till 0.6 and then stabilizes while Precision starts to go up and suddenly jumps around 0.8 suggesting that the model is majority class.
