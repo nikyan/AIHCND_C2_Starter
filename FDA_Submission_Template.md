@@ -104,6 +104,24 @@ Accuracy here is misleading since the dataset is imbalanced.
  
  * Sample NIH data: sample_labels.csv
    Sample data used for EDA.
+   
+**Data Exploration**
+
+ * Demographics
+ 
+ Distribution of Patients by Age:
+ 
+ ![GitHub Logo](/images/Dist_Patient_Age.png)
+ 
+ Distribution of Patients by Gender:
+ 
+ ![GitHub Logo](/images/Dist_Patient_Gender.png)
+ 
+ 
+ Distribution of X-rays by View Position:
+
+ ![GitHub Logo](/images/Dist_View_Position.png)
+ 
 
 
 **Description of Training Dataset:** 
