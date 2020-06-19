@@ -1,8 +1,10 @@
 # FDA  Submission
 
 **Your Name:**
+Nikhil Narayan
 
 **Name of your Device:**
+Pneumonia Screener
 
 ## Algorithm Description 
 
