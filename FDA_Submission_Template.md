@@ -20,39 +20,110 @@ Pneumonia Screener
 
 ### 2. Algorithm Design and Function
 
-<< Insert Algorithm Flowchart >>
+The model was trained on 10 epochs. The image below presents the results from each epoch:
+
+![GitHub Logo](/images/Epochs_Loss.png)
 
 **DICOM Checking Steps:**
+1. Get pixel data from dicom file.
+2. Review important fields:
+ - Disease finding
+ - Patient ID, Age, Sex
+ - Image Size
 
 **Preprocessing Steps:**
+1. Resize image to match VGG16 input requirement
+2. Standardize image by subtracting mean of training data and dividing by standard deviation of training data.
+
 
 **CNN Architecture:**
+Pneumonia Screener uses VGG16 Convolutional Neuro Net as base model with additional layers for fine-tuning. The additional layers can be seen in the image below: 
 
+![GitHub Logo](/images/Model_Seq.png)
 
 ### 3. Algorithm Training
 
 **Parameters:**
-* Types of augmentation used during training
+* Types of augmentation used during training:
+ 1. horizontal_flip = True
+ 2. height_shift_range = 0.05
+ 3. width_shift_range=0.1
+ 4. rotation_range=5
+ 5. shear_range = 0.1
+ 6. fill_mode = 'reflect'
+ 7. zoom_range=0.15
+ 
 * Batch size
+ 1. Train: 32
+ 2. Test: 1024
+ 
 * Optimizer learning rate
+  Adam(lr=1e-4)
+
 * Layers of pre-existing architecture that were frozen
+  17 layers
+  
 * Layers of pre-existing architecture that were fine-tuned
+  block5_conv3
+  block5_pool
+
 * Layers added to pre-existing architecture
+  flatten_3 (Flatten)          (None, 25088)             0         
+ _________________________________________________________________
+ dropout_7 (Dropout)          (None, 25088)             0         
+ _________________________________________________________________
+ dense_9 (Dense)              (None, 1024)              25691136  
+ _________________________________________________________________
+ dropout_8 (Dropout)          (None, 1024)              0         
+ _________________________________________________________________
+ dense_10 (Dense)             (None, 512)               524800    
+ _________________________________________________________________
+ dropout_9 (Dropout)          (None, 512)               0         
+ _________________________________________________________________
+ dense_11 (Dense)             (None, 256)               131328    
+ _________________________________________________________________
+ dense_12 (Dense)             (None, 1)                 257       
+ 
+ 
+* Training Loss and Accuracy on Dataset
+![GitHub Logo](/images/history.png)
 
-<< Insert algorithm training performance visualization >> 
 
-<< Insert P-R curve >>
+
+* RoC Curve
+
+AUC Score: 0.6916173570019724
+![GitHub Logo](/images/Roc_Curve.png)
 
 **Final Threshold and Explanation:**
+![GitHub Logo](/images/Threshold.png)
+
+F1 score increases till 0.6 and then stabilizes while Precision starts to go up and suddenly jumps around 0.8 suggesting that the model is majority class.
+Accuracy here is misleading since the dataset is imbalanced.
 
 ### 4. Databases
  (For the below, include visualizations as they are useful and relevant)
+ * NIH data: Data_Entry_2017.csv
+ * PNG Images: X-ray images
+  112120 images and labels in csv file.
+ 
+ * Sample NIH data: sample_labels.csv
+   Sample data used for EDA.
+
 
 **Description of Training Dataset:** 
 
+Majority class is under sampled to have equal weightage of Pneumonia and Non-Pneumonia cases.
+
+Training data shape: (2290, 29)
+
+
 
 **Description of Validation Dataset:** 
+The training and validation dataset are stratified by Pneumonia class i.e. there are equal number of Pneumonia and Non-Pneumonia 
+cases in training and validation dataset.
 
+Validation data shape: (22424, 29)
 
 ### 5. Ground Truth
 
