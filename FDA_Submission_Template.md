@@ -4,17 +4,27 @@
 Nikhil Narayan
 
 **Name of your Device:**
-Pneumonia Screener
+Pneumonia Identifier
 
 ## Algorithm Description 
 
 ### 1. General Information
 
+The Algorithm designed is a classification algorithm performing binary classification that assesses the whole image (x-ray) and returns an output stating whether or not Pneumonia is present in an image.
+
 **Intended Use Statement:** 
+
+In diagnostic situations, a clinician orders an imaging study because they believe that a disease may be present based on the patient's symptoms. Diagnostic imaging can be performed in emergency settings as well as non-emergency settings.
+The Pneumonia Identifier 
 
 **Indications for Use:**
 
+
+
+
 **Device Limitations:**
+
+
 
 **Clinical Impact of Performance:**
 
@@ -152,7 +162,14 @@ Since we are using this algorithm for screening, the labeling by Radiologist can
 ### 6. FDA Validation Plan
 
 **Patient Population Description for FDA Validation Dataset:**
+You need to gather the ground truth that can be used to compare the model output tested on the FDA validation set. The choice of your ground truth method ties back to your intended use statement. Depending on the intended use of the algorithm, the ground truth can be very different.
 
 **Ground Truth Acquisition Methodology:**
+
+Validation Plan
+Performance standard
+For your validation plan, you need evidence to support your reasoning. As a result, you need a performance standard. This step usually involves a lot of literature searching.
+Depending on the use case for your algorithm, part of your validation plan may need to include assessing how fast your algorithm can read a study.
+
 
 **Algorithm Performance Standard:**
