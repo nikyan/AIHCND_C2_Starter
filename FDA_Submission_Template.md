@@ -82,12 +82,8 @@ Pneumonia Screener uses VGG16 Convolutional Neuro Net as base model with additio
 ![GitHub Logo](/images/history.png)
 
 
+* PR Curve
 
-* RoC Curve
-
-AUC Score: 0.6916173570019724
-
-![GitHub Logo](/images/Roc_Curve.png)
 
 **Final Threshold and Explanation:**
 
@@ -122,7 +118,16 @@ Accuracy here is misleading since the dataset is imbalanced.
 
  ![GitHub Logo](/images/Dist_View_Position.png)
  
-
+ * Diseases
+ 
+  Distribution of all diseases in the dataset:
+  
+  ![GitHub Logo](/images/Dist_all_images.png)
+  
+  Count of Pneumonia cases in the dataset:
+  
+  ![GitHub Logo](/images/Dist_Pneumonia_Cases.png)
+  
 
 **Description of Training Dataset:** 
 
@@ -133,6 +138,7 @@ Training data shape: (2290, 29)
 
 
 **Description of Validation Dataset:** 
+
 The training and validation dataset are stratified by Pneumonia class i.e. there are equal number of Pneumonia and Non-Pneumonia 
 cases in training and validation dataset.
 
@@ -140,6 +146,7 @@ Validation data shape: (22424, 29)
 
 ### 5. Ground Truth
 
+Since we are using this algorithm for screening, the labeling by Radiologist can be used as ground truth.
 
 
 ### 6. FDA Validation Plan
