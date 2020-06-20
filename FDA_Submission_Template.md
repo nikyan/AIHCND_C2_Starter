@@ -20,13 +20,14 @@ for assisting the radiologist in the detection of Penuemonia from chest x-rays i
 
 * Screening x-rays for Pneumonia
 * Workflow priortization for Radiologists
-* Male and Female between age group of 20 and 70
+* Classify Male and Female patients between age group of 20 and 70
 
 In diagnostic situations, a clinician orders an imaging study because they believe that a disease may be present based on the patient's symptoms. Diagnostic imaging can be performed in emergency settings as well as non-emergency settings. The CAD system can perform the first level of analysis which can then be validated by a Radiologist. The classification done by the CAD system can be used to optimize Radiologist workflow so that positive cases are assessed first. 
 
 **Device Limitations:**
 
 * Rate - TP/FP
+* Requires High Computational Infrastructure (GPU, High RAM & CPU)
 * The CAD system may perform better on Male patients versus Female since training data had more Male patients.
 * The CAD system may not perform well in the presence of other diseases such as Infiltration, Edema, Atelectasis, Effusion etc.
 
@@ -143,21 +144,25 @@ The dataset consists of 112120 chest x-rays with disease labels acquired from 30
   
   ![GitHub Logo](/images/Dist_Pneumonia_Cases.png)
   
+  Distribution of Pneumonia cases by Age and Gender:
+  
+  ![GitHub Logo](/images/Dist_Pneumoni_Age_Gender.png)
+  
 
 **Description of Training Dataset:** 
 
-Majority class is under sampled to have equal weightage of Pneumonia and Non-Pneumonia cases.
-
-Training data shape: (2290, 29)
-
+* Majority class is under sampled to have equal weightage of Pneumonia and Non-Pneumonia cases.
+* The training dataset is augmented to provide more real life examples of x-ray images.
+* The training batch size is kept at 100, which results in approx 22 batches and with 10 epocs, a total of 220 batches. 
+* Adam optimizer is used with a learning rate of 1e-4. To prevent overfitting, EarlyStopping is used on loss function with a patience value of 10.
+* Pre-trained VGG16 model is used as the base model. 3 dropout layers are added to prevent overfitting and improve generalization
 
 
 **Description of Validation Dataset:** 
 
-The training and validation dataset are stratified by Pneumonia class i.e. there are equal number of Pneumonia and Non-Pneumonia 
+* The training and validation dataset are stratified by Pneumonia class i.e. there are equal number of Pneumonia and Non-Pneumonia 
 cases in training and validation dataset.
 
-Validation data shape: (22424, 29)
 
 ### 5. Ground Truth
 
