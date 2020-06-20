@@ -27,8 +27,8 @@ In diagnostic situations, a clinician orders an imaging study because they belie
 **Device Limitations:**
 
 * Requires High Computational Infrastructure (GPU, High RAM & CPU)
-* The CAD system may perform better on Male patients versus Female since training data had more Male patients.
 * The CAD system may not perform well in the presence of other diseases such as Infiltration, Edema, Atelectasis, Effusion etc.
+* Requires Patient age to be between 20 and 70 years.
 
 
 **Clinical Impact of Performance:**
