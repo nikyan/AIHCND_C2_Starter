@@ -98,7 +98,7 @@ Pneumonia Screener uses VGG16 Convolutional Neuro Net as base model with additio
  
 * Training Loss and Accuracy on Dataset
 
-![GitHub Logo](/images/history.png)
+![GitHub Logo](/images/History.png)
 
 
 * PR Curve
