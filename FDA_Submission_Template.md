@@ -18,21 +18,23 @@ for assisting the radiologist in the detection of Penuemonia from chest x-rays i
 
 **Indications for Use:**
 
-* Screening x-rays for Pneumonia
 * Workflow priortization for Radiologists
-* Classify Male and Female patients between age group of 20 and 70
+* Screening x-rays for Pneumonia
+* Can classify Male and Female patients between age groups of 20 and 70
 
 In diagnostic situations, a clinician orders an imaging study because they believe that a disease may be present based on the patient's symptoms. Diagnostic imaging can be performed in emergency settings as well as non-emergency settings. The CAD system can perform the first level of analysis which can then be validated by a Radiologist. The classification done by the CAD system can be used to optimize Radiologist workflow so that positive cases are assessed first. 
 
 **Device Limitations:**
 
-* Rate - TP/FP
 * Requires High Computational Infrastructure (GPU, High RAM & CPU)
 * The CAD system may perform better on Male patients versus Female since training data had more Male patients.
 * The CAD system may not perform well in the presence of other diseases such as Infiltration, Edema, Atelectasis, Effusion etc.
 
 
 **Clinical Impact of Performance:**
+
+The threshold is selected to optimize Recall so that we have more confidence when the test is negative. This is well suited for worklist priortization.
+
 
 ### 2. Algorithm Design and Function
 
@@ -166,20 +168,39 @@ cases in training and validation dataset.
 
 ### 5. Ground Truth
 
-Since we are using this algorithm for screening, the labeling by Radiologist can be used as ground truth.
-
+Radiologists can detect Pneumonia with high confidence from chest x-rays of patients. The labeling performed by Radiologists can be used as ground truth. Since, we are not planning to replace Radiologists, the classification performed by Radiologist can be used as gold standard.
 
 ### 6. FDA Validation Plan
 
 **Patient Population Description for FDA Validation Dataset:**
-You need to gather the ground truth that can be used to compare the model output tested on the FDA validation set. The choice of your ground truth method ties back to your intended use statement. Depending on the intended use of the algorithm, the ground truth can be very different.
+
+WHO:
+* The validation dataset should be for patients between age group of 20 and 70.
+* The patients should not have any other comborbid diseases.
+
+WHAT:
+* x-ray images of chest
+
+
 
 **Ground Truth Acquisition Methodology:**
 
-Validation Plan
-Performance standard
-For your validation plan, you need evidence to support your reasoning. As a result, you need a performance standard. This step usually involves a lot of literature searching.
-Depending on the use case for your algorithm, part of your validation plan may need to include assessing how fast your algorithm can read a study.
+Ground Truth: Classification performed by Radiologists.
+* Identify a clinical partner who can provide data.
+* Create silver standard by using multiple radiologists.
+* Perform classification to validate algorithm.
 
 
 **Algorithm Performance Standard:**
+
+Taking existing research as predicate for Radiologist performance, the average F1 score is the following:
+
+                F1 Score       (95% CI)
+Radiologist 1     0.383      (0.309, 0.453)
+Radiologist 2     0.356      (0.282, 0.428)
+Radiologist 3     0.365      (0.291, 0.435)
+Radiologist 4     0.442      (0.390, 0.492)
+
+Radiologist Avg.  0.387      (0.330, 0.442)
+
+
