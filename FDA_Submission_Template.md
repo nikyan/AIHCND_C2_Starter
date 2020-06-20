@@ -48,11 +48,11 @@ The model was trained on 10 epochs. The image below presents the results from ea
  - Disease finding
  - Patient ID, Age, Sex
  - Image Size
+ 3. Ensure the body part examined is 'CHEST'.
 
 **Preprocessing Steps:**
 1. Resize image to match VGG16 input requirement
 2. Standardize image by subtracting mean of training data and dividing by standard deviation of training data.
-3. Randomly distort image by performing augmentation on the image so that the algorithm is trained using variety of images.
 
 
 **CNN Architecture:**
@@ -75,7 +75,7 @@ Pneumonia Screener uses VGG16 Convolutional Neuro Net as base model with additio
    7. zoom_range=0.15
  
 * Batch size
-   1. Train: 32
+   1. Train: 100
    2. Test: 1024
  
 * Optimizer learning rate: Adam(lr=1e-4)
@@ -109,8 +109,11 @@ Pneumonia Screener uses VGG16 Convolutional Neuro Net as base model with additio
 
 ![GitHub Logo](/images/Threshold.png)
 
-F1 score increases till 0.6 and then stabilizes while Precision starts to go up and suddenly jumps around 0.8 suggesting that the model is majority class.
-Accuracy here is misleading since the dataset is imbalanced.
+* F1 is right metric to consider since we are dealing with imbalanced dataset and F1 considers both Precision and Recall. 
+* While evaluating performance using thresholds, F1 score increases but precision starts to decrease post 0.7 threshold. 
+* With the current model, 0.7 threshold is considered the final threshold.
+* At 0.7, the Recall is optimized which is important from intended use perspective (worklist prioritization).
+* Accuracy as a metric is misleading since the dataset is imbalanced.
 
 ### 4. Databases
  (For the below, include visualizations as they are useful and relevant)
@@ -166,7 +169,6 @@ The dataset consists of 112120 chest x-rays with disease labels acquired from 30
 * The training and validation dataset are stratified by Pneumonia class i.e. there are equal number of Pneumonia and Non-Pneumonia 
 cases in training and validation dataset.
 * No augmentation is performed on the validation dataset.
-* The validation dataset is standardized using training data's mean and standard deviation.
 
 
 ### 5. Ground Truth
@@ -183,7 +185,6 @@ WHO:
 
 WHAT:
 * x-ray images of chest
-
 
 
 **Ground Truth Acquisition Methodology:**
