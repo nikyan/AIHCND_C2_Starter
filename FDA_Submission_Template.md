@@ -103,6 +103,7 @@ Pneumonia Screener uses VGG16 Convolutional Neuro Net as base model with additio
 
 * PR Curve
 
+![GitHub Logo](/images/pr_curve.png)
 
 **Final Threshold and Explanation:**
 
@@ -148,7 +149,7 @@ The dataset consists of 112120 chest x-rays with disease labels acquired from 30
   
   Distribution of Pneumonia cases by Age and Gender:
   
-  ![GitHub Logo](/images/Dist_Pneumoni_Age_Gender.png)
+  ![GitHub Logo](/images/Dist_Pneumonia_Age_Gender.png)
   
 
 **Description of Training Dataset:** 
@@ -164,6 +165,8 @@ The dataset consists of 112120 chest x-rays with disease labels acquired from 30
 
 * The training and validation dataset are stratified by Pneumonia class i.e. there are equal number of Pneumonia and Non-Pneumonia 
 cases in training and validation dataset.
+* No augmentation is performed on the validation dataset.
+* The validation dataset is standardized using training data's mean and standard deviation.
 
 
 ### 5. Ground Truth
@@ -193,14 +196,12 @@ Ground Truth: Classification performed by Radiologists.
 
 **Algorithm Performance Standard:**
 
-Taking existing research as predicate for Radiologist performance, the average F1 score is the following:
+Taking existing research as predicate for Radiologist performance, the average F1 score is the following from 4 Radiologists:
 
-                F1 Score       (95% CI)
-Radiologist 1     0.383      (0.309, 0.453)
-Radiologist 2     0.356      (0.282, 0.428)
-Radiologist 3     0.365      (0.291, 0.435)
-Radiologist 4     0.442      (0.390, 0.492)
+Radiologist Avg. F1-Score: 0.387
 
-Radiologist Avg.  0.387      (0.330, 0.442)
+The above F1 score for Radiologists can be used as benchmark for this algorithm and also used to evaluate whether the algorithm is at par with Radiologists in predicting Pneumonia from x-ray images.
+
+Reference Study: https://arxiv.org/pdf/1711.05225.pdf%202017.pdf
 
 
