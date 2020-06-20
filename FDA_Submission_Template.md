@@ -10,20 +10,25 @@ Pneumonia Identifier
 
 ### 1. General Information
 
-The Algorithm designed is a classification algorithm performing binary classification that assesses the whole image (x-ray) and returns an output stating whether or not Pneumonia is present in an image.
+The Pneumona Identifier is a CAD system that assesses the whole image (x-ray) and returns an output stating whether or not Pneumonia is present in an image.
 
 **Intended Use Statement:** 
+for assisting the radiologist in the detection of Penuemonia from chest x-rays in a patient.
 
-In diagnostic situations, a clinician orders an imaging study because they believe that a disease may be present based on the patient's symptoms. Diagnostic imaging can be performed in emergency settings as well as non-emergency settings.
-The Pneumonia Identifier 
 
 **Indications for Use:**
 
+* Screening x-rays for Pneumonia
+* Workflow priortization for Radiologists
+* Male and Female between age group of 20 and 70
 
-
+In diagnostic situations, a clinician orders an imaging study because they believe that a disease may be present based on the patient's symptoms. Diagnostic imaging can be performed in emergency settings as well as non-emergency settings. The CAD system can perform the first level of analysis which can then be validated by a Radiologist. The classification done by the CAD system can be used to optimize Radiologist workflow so that positive cases are assessed first. 
 
 **Device Limitations:**
 
+* Rate - TP/FP
+* The CAD system may perform better on Male patients versus Female since training data had more Male patients.
+* The CAD system may not perform well in the presence of other diseases such as Infiltration, Edema, Atelectasis, Effusion etc.
 
 
 **Clinical Impact of Performance:**
@@ -44,6 +49,7 @@ The model was trained on 10 epochs. The image below presents the results from ea
 **Preprocessing Steps:**
 1. Resize image to match VGG16 input requirement
 2. Standardize image by subtracting mean of training data and dividing by standard deviation of training data.
+3. Randomly distort image by performing augmentation on the image so that the algorithm is trained using variety of images.
 
 
 **CNN Architecture:**
@@ -105,11 +111,10 @@ Accuracy here is misleading since the dataset is imbalanced.
 ### 4. Databases
  (For the below, include visualizations as they are useful and relevant)
  * NIH data: Data_Entry_2017.csv
- * PNG Images: X-ray images
-  112120 images and labels in csv file.
+The dataset consists of 112120 chest x-rays with disease labels acquired from 30000 patients. The labels in the dataset were created using Natural Language Processing by text-mining disease classifications from the associated radiological reports. The labels are expected to be >90% accurate and suitable for weakly-supervised learning. 
  
  * Sample NIH data: sample_labels.csv
-   Sample data used for EDA.
+ Sample of the NIH data used for EDA.
    
 **Data Exploration**
 
